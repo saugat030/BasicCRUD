@@ -1,0 +1,8 @@
+﻿@if (TempData["notif"] != null) //yo chai aba partial view ma ni garna milxa since if youi have multiple pages to show the same error message sab lai eke k garere garna is not optimal. Check the partial view for more information opn this.
+{
+    <h2>@TempData["notif"]</h2>
+}
+@if (TempData["error"] != null) 
+{
+    <h2>@TempData["error"]</h2>
+}

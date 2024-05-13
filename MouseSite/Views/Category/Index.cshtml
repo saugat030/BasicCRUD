@@ -1,0 +1,59 @@
+﻿@model List<Categ>
+
+
+@if (TempData["notif"] != null) //yo chai aba partial view ma ni garna milxa since if youi have multiple pages to show the same error message sab lai eke k garere garna is not optimal. Check the partial view for more information opn this.
+{
+    <h2>@TempData["notif"]</h2>
+}
+@*OR WE CAN DO THIS ::::*@
+
+
+<partial name="_Notif" />
+
+
+
+<h3>Category List</h3>
+@{
+    foreach(var item in Model)
+    {
+        <p style="display: inline-block; margin:5px">@item.Name</p>
+    }
+}
+@*<p style="margin-left:5px">@Model[1].Name</p><hr /> <br /> // Yo chai aba Model[1] exist gardaian ni ta records delete hudai gayexi.*@
+
+<div class="container">
+    <div class="row  pb-3">
+         <div class="col-6">
+            <h2 class="text-secondary"><strong>Category Table:</strong></h2>
+         </div>
+         <div class="col-6 text-end">
+            <a class="btn btn-outline-dark" asp-controller="Category" asp-action="Create"><i style="margin-right:8px" class="bi bi-plus-square"></i>Create New</a>
+         </div>
+    </div>
+
+<table class="table table table-bordered table-striped text-center">
+    <thead>
+        <tr>
+            <th>CategoryId</th>
+            <th>Name</th>
+            <th>Display Order</th><th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model.OrderBy(x => x.DisplayOrder)){
+        <tr>
+            <td>@data.CategoryId</td>
+            <td>@data.Name</td>
+            <td>@data.DisplayOrder</td>
+                <td>        
+               
+                <a class ="btn btn-outline-success ms-3" asp-controller="Category" asp-action="Edit" asp-route-id="@data.CategoryId"> <i class="bi bi-pencil-square"></i>  Edit</a>
+                        <a class="btn btn-outline-danger ms-3" asp-controller="Category" asp-action="Delete" asp-route-id="@data.CategoryId"> <i class="bi bi-trash"></i>  Delete</a>
+                 
+               </td>
+             
+        </tr>
+        }
+    </tbody>
+    </table>
+</div>
