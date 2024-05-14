@@ -7,7 +7,7 @@
             <h2 class="text-secondary"><strong>Category Table:</strong></h2>
         </div>
         <div class="col-6 text-end">
-            <a class="btn btn-outline-dark" asp-page="Categories/Create"><i style="margin-right:8px" class="bi bi-plus-square"></i>Create New</a>
+            <a class="btn btn-outline-dark" asp-page="/Categories/create"><i style="margin-right:8px" class="bi bi-plus-square"></i>Create New</a>
         </div>
     </div>
 
@@ -29,8 +29,8 @@
                     <td>@data.DisplayOrder</td>
                     <td>
 
-                        <a class="btn btn-outline-success ms-3" asp-page="Category/Edit"  asp-route-id="@data.CategoryId"> <i class="bi bi-pencil-square"></i>  Edit</a>
-                        <a class="btn btn-outline-danger ms-3" asp-page="Category/Edit"  asp-route-id="@data.CategoryId"> <i class="bi bi-trash"></i>  Delete</a>
+                        <a class="btn btn-outline-success ms-3" asp-page="/Category/Edit"  asp-route-id="@data.CategoryId"> <i class="bi bi-pencil-square"></i>  Edit</a>
+                        <a class="btn btn-outline-danger ms-3" asp-page="/Category/Edit"  asp-route-id="@data.CategoryId"> <i class="bi bi-trash"></i>  Delete</a>
 
                     </td>
 
