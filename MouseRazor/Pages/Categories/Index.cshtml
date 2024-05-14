@@ -1,0 +1,41 @@
+﻿@page
+@model MouseRazor.Pages.Categories.IndexModel
+<h1>Cateogy List</h1>
+<div class="container">
+    <div class="row  pb-3">
+        <div class="col-6">
+            <h2 class="text-secondary"><strong>Category Table:</strong></h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-outline-dark" asp-page="Categories/Create"><i style="margin-right:8px" class="bi bi-plus-square"></i>Create New</a>
+        </div>
+    </div>
+
+    <table class="table table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>CategoryId</th>
+                <th>Name</th>
+                <th>Display Order</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model.CategoriesList.OrderBy(x => x.DisplayOrder))
+            {
+                <tr>
+                    <td>@data.CategoryId</td>
+                    <td>@data.Name</td>
+                    <td>@data.DisplayOrder</td>
+                    <td>
+
+                        <a class="btn btn-outline-success ms-3" asp-page="Category/Edit"  asp-route-id="@data.CategoryId"> <i class="bi bi-pencil-square"></i>  Edit</a>
+                        <a class="btn btn-outline-danger ms-3" asp-page="Category/Edit"  asp-route-id="@data.CategoryId"> <i class="bi bi-trash"></i>  Delete</a>
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

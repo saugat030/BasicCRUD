@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MouseSite", "MouseSite\MouseSite.csproj", "{240065E4-E747-4C97-910E-C902012E0C37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseRazor", "MouseRazor\MouseRazor.csproj", "{F314A885-C4E5-46E8-B036-ECC7B29CA2AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MouseRazor", "MouseRazor\MouseRazor.csproj", "{F314A885-C4E5-46E8-B036-ECC7B29CA2AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
