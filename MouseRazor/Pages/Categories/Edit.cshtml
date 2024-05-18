@@ -1,2 +1,44 @@
 ﻿@page
 @model MouseRazor.Pages.Categories.EditModel
+<h1 class="ms-1 mb-4" style="color:darkgrey"> Edit View</h1>
+<form method="post">
+
+    <div class="border rounded p-1 m-2">
+        <div class="text-danger" asp-validation-summary="All"></div> @*summary le chai sab lai ekai taal ma dekhauxa All ko satta Model use garda maal hunxa*@
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <input asp-for= "Cat.CategoryId" hidden />
+                <label asp-for="Cat.DisplayOrder" class="mb-1"></label>
+                <input asp-for="Cat.DisplayOrder" class="form-control" />
+                <span asp-validation-for="Cat.DisplayOrder" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Cat.Name" class="mb-1"></label>
+                <input asp-for="Cat.Name" class="form-control" />
+                <span asp-validation-for="Cat.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row ms-3 mb-2 p-2">
+            <div class="col-4 g-1">
+                <button type="submit" class="form-control btn btn-outline-dark">Update</button>
+            </div>
+            <div class="col-4 g-1">
+                <a class="btn btn-secondary" asp-page="/Categories/index">Back to list</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@*Aba esle k garxa vanne kura aayo :
+    1) Page refresh na gari client side validation hanxa. Hamrop already lekheko validatons ma client side ni handinxa.
+    2) Custom Validations xa vane chai refresh hannai parxa server ma janai parxa.
+*@
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" /> @* partial is a tag helper. This can  be added directly in the page but since this is a script , we insert it in Scripts section*@
+    }
+}
