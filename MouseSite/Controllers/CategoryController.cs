@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MouseSite.Data;
-using MouseSite.Models;
+using Mouse.DataAccess.Data;
+using Mouse.Models;
 
 namespace MouseSite.Controllers
 {

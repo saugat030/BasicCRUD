@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using MouseSite.Models;
+using Mouse.Models;
 using System.Diagnostics;
 
 namespace MouseSite.Controllers

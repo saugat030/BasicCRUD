@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace MouseSite.Migrations
+namespace Mouse.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class SeedTheData : Migration

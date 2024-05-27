@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MouseSite.Data;
+using Mouse.DataAccess.Data;
 
 #nullable disable
 
-namespace MouseSite.Migrations
+namespace Mouse.DataAccess.Migrations   
 {
     [DbContext(typeof(MouseDbContext))]
     [Migration("20240127094136_SeedTheData")]

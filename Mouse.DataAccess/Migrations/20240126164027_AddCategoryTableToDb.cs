@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MouseSite.Migrations
+namespace Mouse.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration

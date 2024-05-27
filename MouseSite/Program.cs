@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MouseSite.Data;
+using Mouse.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

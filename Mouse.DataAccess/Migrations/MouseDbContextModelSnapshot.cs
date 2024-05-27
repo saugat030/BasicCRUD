@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MouseSite.Data;
+using Mouse.DataAccess.Data;
 
 #nullable disable
 
-namespace MouseSite.Migrations
+namespace Mouse.DataAccess.Migrations
 {
     [DbContext(typeof(MouseDbContext))]
-    [Migration("20240126164027_AddCategoryTableToDb")]
-    partial class AddCategoryTableToDb
+    partial class MouseDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +42,36 @@ namespace MouseSite.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categs");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            DisplayOrder = 1,
+                            MyProperty3 = 0,
+                            Name = "SciFi"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            DisplayOrder = 2,
+                            MyProperty3 = 0,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            DisplayOrder = 3,
+                            MyProperty3 = 0,
+                            Name = "Fiction"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            DisplayOrder = 24,
+                            MyProperty3 = 0,
+                            Name = "Fantasy"
+                        });
                 });
 #pragma warning restore 612, 618
         }

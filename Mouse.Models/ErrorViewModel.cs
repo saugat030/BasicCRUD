@@ -1,4 +1,4 @@
-namespace MouseSite.Models
+namespace Mouse.Models
 {
     public class ErrorViewModel
     {

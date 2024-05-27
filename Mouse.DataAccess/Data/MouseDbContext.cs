@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MouseSite.Models;
+using Mouse.Models;
 
-namespace MouseSite.Data
+namespace Mouse.DataAccess.Data
 {
     public class MouseDbContext : DbContext
     {

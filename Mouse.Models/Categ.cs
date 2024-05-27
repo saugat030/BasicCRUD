@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace MouseSite.Models
+namespace Mouse.Models
 {
     public class Categ
     {
@@ -13,8 +13,8 @@ namespace MouseSite.Models
         public string? Name { get; set; }
         [Required]
         [DisplayName("Display Order")]
-        [Range(1,50,ErrorMessage ="Range milena solti")]
-        public int DisplayOrder{ get; set;}
-        public int MyProperty3 { get; set;}
+        [Range(1, 50, ErrorMessage = "Range milena solti")]
+        public int DisplayOrder { get; set; }
+        public int MyProperty3 { get; set; }
     }
 }
