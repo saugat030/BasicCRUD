@@ -13,6 +13,7 @@
 
 
 <h3>Category List</h3>
+@*
 @{
     foreach(var item in Model)
     {
@@ -22,7 +23,7 @@
 @*<p style="margin-left:5px">@Model[1].Name</p><hr /> <br /> // Yo chai aba Model[1] exist gardaian ni ta records delete hudai gayexi.*@
 
 <div class="container">
-    <div class="row  pb-3">
+    <div class="row pb-3">
          <div class="col-6">
             <h2 class="text-secondary"><strong>Category Table:</strong></h2>
          </div>
@@ -31,7 +32,7 @@
          </div>
     </div>
 
-<table class="table table table-bordered table-striped text-center">
+<table class="table-bordered table-striped table table text-center">
     <thead>
         <tr>
             <th>CategoryId</th>

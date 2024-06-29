@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mouse.DataAccess.Data;
+using Mouse.DataAccess.Repository;
 using Mouse.Models;
 
 namespace MouseSite.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
-    {   private readonly MouseDbContext _db;
-        public CategoryController(MouseDbContext db)
+    {   private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-                _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Categ> categObj = _db.Categs.ToList(); 
+            List<Categ> categObj = _unitOfWork.Category.GetAll().ToList(); 
             return View(categObj);
         }
         public IActionResult Create()
@@ -28,8 +30,8 @@ namespace MouseSite.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categs.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                TempData["notif"] = "category created successfully.";
                 return RedirectToAction("Index");
             }
@@ -37,7 +39,7 @@ namespace MouseSite.Controllers
         }
         public IActionResult Edit(int? id) //m ra tyoDherai Important kura : yo ko naa "asp-route-..." ma pass gareko name same hunu parxa
         {
-            Categ? editionObj = _db.Categs.FirstOrDefault(x=>x.CategoryId==id); // can use any moethod to retrieve data just that FirstOrDefault is prefered.
+            Categ? editionObj = _unitOfWork.Category.Get(x=>x.CategoryId==id); // can use any moethod to retrieve data just that FirstOrDefault is prefered.
            // Categ? editionObj = _db.Categs.Where(x => x.CategoryId == idd).FirstOrDefault();//This is LINQ method obviously. That idd gets passed from the view of Index page of CategoryController. Refer to that.
             if (editionObj == null){ 
                 return NotFound(editionObj);  
@@ -53,8 +55,8 @@ namespace MouseSite.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categs.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["notif"] = "category updated successfully.";
                 return RedirectToAction("Index");
             }
@@ -62,13 +64,13 @@ namespace MouseSite.Controllers
         }
         public IActionResult Delete(int? id)
         {
-            Categ? editionObj = _db.Categs.FirstOrDefault(x => x.CategoryId == id); 
+            Categ? editionObj = _unitOfWork.Category.Get(x => x.CategoryId == id);
             return View(editionObj);
         }
         [HttpPost , ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
-            Categ? obj = _db.Categs.FirstOrDefault(x => x.CategoryId == id);
+            Categ? obj = _unitOfWork.Category.Get(x => x.CategoryId == id);
             if (obj == null)
             {
                 return NotFound();
@@ -79,8 +81,8 @@ namespace MouseSite.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categs.Remove(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Remove(obj);
+                _unitOfWork.Save();
                 TempData["notif"] = "category deleted successfully.";
                 return RedirectToAction("Index");
             }

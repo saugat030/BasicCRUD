@@ -1,17 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Mouse.DataAccess.Data;
+using Mouse.DataAccess.Repository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MouseDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 var app = builder.Build();
-
-
-
-
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())//launch settins.json ma hunxa yo
 {
@@ -33,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

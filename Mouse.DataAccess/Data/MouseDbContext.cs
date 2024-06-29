@@ -5,7 +5,7 @@ namespace Mouse.DataAccess.Data
 {
     public class MouseDbContext : DbContext
     {
-        public MouseDbContext(DbContextOptions<MouseDbContext> options) :base (options) // Connection dtring lai DbCOntext ma pass hanya basically.
+        public MouseDbContext(DbContextOptions<MouseDbContext> options) :base (options) // Connection string lai DbCOntext ma pass hanya basically.
         {}
 
         public DbSet<Categ> Categs { get; set; }
