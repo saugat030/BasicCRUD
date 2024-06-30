@@ -12,7 +12,7 @@ namespace Mouse.DataAccess.Repository
     public class CategoryRepository : Repo<Categ> , ICategoryRepository
     {
         private MouseDbContext _db;
-        public CategoryRepository(MouseDbContext db):base(db)
+        public CategoryRepository(MouseDbContext db):base(db) //The whole point of this is to just make an update method ,which is in the ICategory Repo idk why we inherit Repo<> tho.
         {
             _db = db;
         }
