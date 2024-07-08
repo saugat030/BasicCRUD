@@ -13,10 +13,12 @@ namespace Mouse.DataAccess.Repository
         
         private MouseDbContext _db;
         public ICategoryRepository Category { get; private set; }
+        public IProductRepository Product { get; private set; }
         public UnitOfWork(MouseDbContext db)  //yo classs ma chai db context lai matrai pass haneko ho. kun dbset ko ho doesnt matter here. Dbset chai paxi arkai ma define hunxa.
             {
                 _db = db;
             Category = new CategoryRepository(_db);
+            Product =  new ProductRepository(_db);
             }
             
 
