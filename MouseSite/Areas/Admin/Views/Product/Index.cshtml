@@ -1,0 +1,70 @@
+﻿@model List<Product>
+
+
+@if (TempData["notif"] != null) //yo chai aba partial view ma ni garna milxa since if youi have multiple pages to show the same error message sab lai eke k garere garna is not optimal. Check the partial view for more information opn this.
+{
+    <h2>@TempData["notif"]</h2>
+}
+@*OR WE CAN DO THIS ::::*@
+
+
+<partial name="_Notif" />
+
+
+
+@*<h3>Category List</h3>*@
+@*
+@{
+    foreach(var item in Model)
+    {
+        <p style="display: inline-block; margin:5px">@item.Name</p>
+    }
+}
+@*<p style="margin-left:5px">@Model[1].Name</p><hr /> <br /> // Yo chai aba Model[1] exist gardaian ni ta records delete hudai gayexi.*@
+
+<div class="container">
+    <div class="row pb-3">
+         <div class="col-6">
+            <h2 class="text-secondary"><strong>Category Table:</strong></h2>
+         </div>
+         <div class="col-6 text-end">
+            <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Product" asp-action="Create"><i style="margin-right:8px" class="bi bi-plus-square"></i>Create New</a>
+         </div>
+    </div>
+
+<table class="table-bordered table-striped table table text-center">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Description</th>
+            <th>Author</th>
+             <th>Title</th>
+             <th>Category</th>
+             <th>Price</th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model.OrderBy(x => x.Id)){
+        <tr>
+            
+            <td>@data.ISBN</td>
+            <td>@data.Description</td>
+            <td>@data.Author</td>
+            <td>@data.Title</td>
+            <td>Categ Name</td>
+            <td>@data.Price</td>
+           
+                <td>        
+               
+                <a class ="btn btn-outline-success ms-3" asp-controller="Product" asp-action="Edit" asp-route-id="@data.Id"> <i class="bi bi-pencil-square"></i>  Edit</a>
+                <a class="btn btn-outline-danger ms-3" asp-controller="Product" asp-action="Delete" asp-route-id="@data.Id"> <i class="bi bi-trash"></i>  Delete</a>
+                 
+               </td>
+             
+        </tr>
+        }
+    </tbody>
+    </table>
+</div>

@@ -1,0 +1,80 @@
+﻿@model Product
+<h1 class="ms-1 mb-4" style="color:darkgrey"> Delete View</h1>
+<form method="post">
+
+    <div class="border rounded p-1 m-2">
+        <div class="text-danger" asp-validation-summary="All"></div> @*summary le chai sab lai ekai taal ma dekhauxa All ko satta Model use garda maal hunxa*@
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Title" class="mb-1"></label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Author" class="mb-1"></label>
+                <input asp-for="Author" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Description" class="mb-1"></label>
+                <input asp-for="Description" class="form-control" />
+                
+            </div>
+        </div>
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="ISBN" class="mb-1"></label>
+                <input asp-for="ISBN" class="form-control" />
+               
+            </div>
+        </div>
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Price" class="mb-1"></label>
+                <input asp-for="Price" class="form-control" />
+                
+            </div>
+        </div>
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="ListPrice" class="mb-1"></label>
+                <input asp-for="ListPrice" class="form-control" />
+               
+            </div>
+        </div>
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Price50" class="mb-1"></label>
+                <input asp-for="Price50" class="form-control" />
+               
+            </div>
+        </div>
+        <div class="row m-2 p-2">
+            <div class="col-12">
+                <label asp-for="Price100" class="mb-1"></label>
+                <input asp-for="Price100" class="form-control" />
+                
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row ms-3 mb-2 p-2">
+            <div class="col-4 g-1">
+                <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
+            </div>
+            <div class="col-4 g-1">
+                <a class="btn btn-secondary" asp-controller="Category" asp-action="Index">Back to list</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
