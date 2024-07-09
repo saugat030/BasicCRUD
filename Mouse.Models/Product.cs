@@ -40,5 +40,7 @@ namespace Mouse.Models
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Categ MyProperty { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

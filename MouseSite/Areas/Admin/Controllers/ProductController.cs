@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Mouse.DataAccess.Data;
 using Mouse.DataAccess.Repository;
 using Mouse.Models;
@@ -14,11 +15,18 @@ namespace MouseSite.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> categObj = _unitOfWork.Product.GetAll().ToList(); 
+            List<Product> categObj = _unitOfWork.Product.GetAll().ToList();
+            
             return View(categObj);
         }
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.CategoryId.ToString()
+            });
+            ViewBag.CategList = CategList;
             return View();
         }
         [HttpPost]
