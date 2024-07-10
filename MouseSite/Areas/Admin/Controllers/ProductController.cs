@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Mouse.DataAccess.Data;
 using Mouse.DataAccess.Repository;
 using Mouse.Models;
+using Mouse.Models.ProductViewModel;
 
 namespace MouseSite.Controllers
 {
@@ -26,15 +27,20 @@ namespace MouseSite.Controllers
                 Text = u.Name,
                 Value = u.CategoryId.ToString()
             });
-            ViewBag.CategList = CategList;
-            return View();
+            ProductVM productVM = new ProductVM()
+            {
+                CategoryList = CategList,   
+                Product = new Product()
+            };
+            //ViewBag.CategList = CategList; //We can use this to easily access the CategList but this is not the standard method to bind a model to a view
+            return View(productVM); //Since the view is already binded with the Product model , we cant send extra stuff so lets make a class to put them there.
         }
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Create(ProductVM obj)
         {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(obj);
+            if (ModelState.IsValid) //Ya model state ko kei kura wrong vayo, It goes back to the view. Tara view ma pheri pharkida PostMethod ma we havent passed anything
+            {                       //in line 48. productVM pass gareko xaina so @model ma chai ProductVm bind vako xa ani pass chai gareko xaina. So basically badhi validate hanyo.
+                _unitOfWork.Product.Add(obj.Product); 
                 _unitOfWork.Save();
                TempData["notif"] = "category created successfully.";
                 return RedirectToAction("Index");

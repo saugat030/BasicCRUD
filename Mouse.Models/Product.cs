@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Mouse.Models
 {
@@ -39,8 +40,9 @@ namespace Mouse.Models
         public double Price100 { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public Categ MyProperty { get; set; }
-
-        public string ImageUrl { get; set; }
+        [ValidateNever]
+        public Categ? MyProperty { get; set; } //esma validation nai chaindaina tei ni validations run vayera erroes aauxa.
+        [ValidateNever]
+        public string? ImageUrl { get; set; } //esma validation nai chindaina tei ni validation run vayera errors aauxa.
     }
 }
