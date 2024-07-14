@@ -1,9 +1,17 @@
 ﻿@model Mouse.Models.ProductViewModel.ProductVM //Etro gaijatra lekhna na paros vanera ViewImpoerts ma halda hunxa. then you can just do a @model ProductVM
-<h1 class="ms-1 mb-4" style="color:darkgrey"> Create View</h1>
+<h1 class="ms-1 mb-4" style="color:darkgrey"> @{
+        if (Model.Product.Id != 0)
+        {
+            <p>Update</p>
+        }
+        else
+        {
+            <p>Create</p>
+        } }</h1>
 <form method="post" enctype="multipart/form-data">
     <div class="border rounded p-1 m-2">
         <div class ="text-danger" asp-validation-summary="All"></div> @*summary le chai sab lai ekai taal ma dekhauxa All ko satta Model use garda maal hunxa*@
-      
+       <input asp-for="Product.Id" hidden  />
         <div class="row m-2 p-2">
             <div class="col-12">
              <label asp-for="Product.Title" class="mb-1"></label>
@@ -23,11 +31,10 @@
         <div class="row m-2 p-2">
             <div class="col-12">
                 <label asp-for="Product.Description" class="mb-1"></label>
-                <input asp-for="Product.Description" class="form-control" />
-                <span asp-validation-for="Product.Description" class="text-danger"></span>
+                <textarea asp-for="Product.Description" class="form-control"> </textarea>
             </div>
         </div>
-        <div class="row m-2 p-2">
+        <div class="row m-2 p-2 form-floating">
             <div class="col-12">
                 <label asp-for="Product.ISBN" class="mb-1"></label>
                 <input asp-for="Product.ISBN" class="form-control" />
@@ -65,7 +72,7 @@
         <div class="row m-2 p-2">
             <div class="col-12">
                 <label asp-for="Product.ImageUrl" class="mb-1"></label>
-                <input type="file" class="form-control" />
+                <input type="file" name="file" class="form-control" />@*Tihs name is imp coz it bind with the name in the Upsert action method in the controller.*@
             </div>
         </div>
         <div class="row m-2 p-2">
@@ -99,6 +106,20 @@
     2) Custom Validations xa vane chai refresh hannai parxa server ma janai parxa.
 *@
 @section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons visualblocks wordcount mediaembed casechange export formatpaint  pageembed  a11ychecker ',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+        </script>
     @{
     <partial name="_ValidationScriptsPartial" /> @* partial is a tag helper. This can  be added directly in the page but since this is a script , we insert it in Scripts section*@
     }
