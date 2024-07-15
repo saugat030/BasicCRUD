@@ -55,20 +55,19 @@ namespace MouseSite.Controllers
         public IActionResult Upsert(ProductVM obj , IFormFile? file) //to recieve the file.
         {
             if (ModelState.IsValid) //Ya model state ko kei kura wrong vayo, It goes back to the view. Tara view ma pheri pharkida PostMethod ma we havent passed anything
-            {
-
-                //in line 48. productVM pass gareko xaina so @model ma chai ProductVm bind vako xa ani pass chai gareko xaina. So basically badhi validate hanyo.
+            {//in line 48. productVM pass gareko xaina so @model ma chai ProductVm bind vako xa ani pass chai gareko xaina. So basically badhi validate hanyo.
+                
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if(file!=null)
                 {
-                    string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName); //randok name for file.
+                    string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName); //random name for file.
                     string productPath = Path.Combine(wwwRootPath, @"images\product");
 
                     using (var fileStream = new FileStream(Path.Combine(productPath, filename), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
-                    obj.Product.ImageUrl = @"image\product\" + filename;
+                    obj.Product.ImageUrl = (@"\images\product\" + filename);
                 }
                 _unitOfWork.Product.Add(obj.Product); 
                 _unitOfWork.Save();
@@ -78,6 +77,9 @@ namespace MouseSite.Controllers
             return View(); //If error occured then stay in the Create page. Dont go to Index
         }
       
+        
+        
+        
         public IActionResult Delete(int? id)
         {
             Product? editionObj = _unitOfWork.Product.Get(x => x.Id == id);
