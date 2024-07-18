@@ -212,13 +212,13 @@ namespace Mouse.DataAccess.Migrations
 
             modelBuilder.Entity("Mouse.Models.Product", b =>
                 {
-                    b.HasOne("Mouse.Models.Categ", "MyProperty")
+                    b.HasOne("Mouse.Models.Categ", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MyProperty");
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

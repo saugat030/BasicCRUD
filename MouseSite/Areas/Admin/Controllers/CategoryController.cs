@@ -7,14 +7,15 @@ namespace MouseSite.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
-    {   private readonly IUnitOfWork _unitOfWork;
+    {
+        private readonly IUnitOfWork _unitOfWork;
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Categ> categObj = _unitOfWork.Category.GetAll().ToList(); 
+            List<Categ> categObj = _unitOfWork.Category.GetAll().ToList();
             return View(categObj);
         }
         public IActionResult Create()
@@ -32,19 +33,20 @@ namespace MouseSite.Controllers
             {
                 _unitOfWork.Category.Add(obj);
                 _unitOfWork.Save();
-               TempData["notif"] = "category created successfully.";
+                TempData["notif"] = "category created successfully.";
                 return RedirectToAction("Index");
             }
             return View(); //If error occured then stay in the Create page. Dont go to Index
         }
         public IActionResult Edit(int? id) //m ra tyoDherai Important kura : yo ko naa "asp-route-..." ma pass gareko name same hunu parxa
         {
-            Categ? editionObj = _unitOfWork.Category.Get(x=>x.CategoryId==id); // can use any moethod to retrieve data just that FirstOrDefault is prefered.
-           // Categ? editionObj = _db.Categs.Where(x => x.CategoryId == idd).FirstOrDefault();//This is LINQ method obviously. That idd gets passed from the view of Index page of CategoryController. Refer to that.
-            if (editionObj == null){ 
-                return NotFound(editionObj);  
+            Categ? editionObj = _unitOfWork.Category.Get(x => x.CategoryId == id); // can use any moethod to retrieve data just that FirstOrDefault is prefered.
+                                                                                   // Categ? editionObj = _db.Categs.Where(x => x.CategoryId == idd).FirstOrDefault();//This is LINQ method obviously. That idd gets passed from the view of Index page of CategoryController. Refer to that.
+            if (editionObj == null)
+            {
+                return NotFound(editionObj);
             }
-                return View(editionObj);
+            return View(editionObj);
         }
         [HttpPost]
         public IActionResult Edit(Categ obj)
@@ -67,7 +69,7 @@ namespace MouseSite.Controllers
             Categ? editionObj = _unitOfWork.Category.Get(x => x.CategoryId == id);
             return View(editionObj);
         }
-        [HttpPost , ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
             Categ? obj = _unitOfWork.Category.Get(x => x.CategoryId == id);
@@ -90,5 +92,5 @@ namespace MouseSite.Controllers
         }
     }
 }
-    
+
 

@@ -41,7 +41,7 @@ namespace Mouse.Models
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         [ValidateNever]
-        public Categ? MyProperty { get; set; } //esma validation nai chaindaina tei ni validations run vayera erroes aauxa.
+        public Categ? Category { get; set; } //esma validation nai chaindaina tei ni validations run vayera erroes aauxa. 
         [ValidateNever]
         public string? ImageUrl { get; set; } //esma validation nai chindaina tei ni validation run vayera errors aauxa.
     }
