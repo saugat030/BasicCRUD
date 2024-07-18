@@ -1,17 +1,16 @@
 ﻿@model Mouse.Models.ProductViewModel.ProductVM //Etro gaijatra lekhna na paros vanera ViewImpoerts ma halda hunxa. then you can just do a @model ProductVM
 
-<h1 class="ms-1 mb-4" style="color:darkgrey">
     @{
         if (Model.Product.Id != 0)
         {
-            <p>Update</p>
+            <h1 class="ms-1 mb-4" style="color:darkgrey"></h1>
         }
         else
         {
-            <p>Create</p>
+             <h1 class="ms-1 mb-4" style="color:darkgrey"></h1>
         }
     }
-</h1>
+
 
 
 <form method="post" enctype="multipart/form-data">
@@ -97,7 +96,7 @@
 
                     <div class="col-2  rounded p-3">
                         <img src="@Model.Product.ImageUrl" class="w-100" alt="Alternate Text" />
-                        <h1>This is your image</h1>
+                        <h1>Image aaunu parne load hudaina taaaa</h1>
                     </div>
                 }
             }
