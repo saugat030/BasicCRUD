@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Mouse.DataAccess.Data;
 using Mouse.DataAccess.Repository;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MouseDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MouseDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();

@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Mouse.Models;
 
 namespace Mouse.DataAccess.Data
 {
-    public class MouseDbContext : DbContext
+    public class MouseDbContext : IdentityDbContext<IdentityUser> //to use identity now we inherhit from this class instead of the normal DBContext. And <IdentityUser> is the default user
     {
         public MouseDbContext(DbContextOptions<MouseDbContext> options) :base (options) // Connection string lai DbCOntext ma pass hanya basically.
         {
@@ -14,6 +16,7 @@ namespace Mouse.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Categ>().HasData(
                 new Categ { CategoryId = 1, Name = "SciFi", DisplayOrder = 1 },
                 new Categ { CategoryId = 2, Name = "Action", DisplayOrder = 2 },
